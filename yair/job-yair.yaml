@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: clair
+    component: clair-client
+  name: clair-analyze-container
+  namespace: test
+spec:
+  backoffLimit: 6
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      labels:
+        app: clair
+        component: clair-client
+        job-name: clair-analyze-container
+    spec:
+      containers:
+      - args: ["viglesiasce/minio-client:v0.4.0"]
+        env:
+        # - name: REGISTRY_HOST
+        #   value: registry.hub.docker.com
+        - name: CLAIR_HOST
+          value: clair-clair:6060
+        # - name: OUTPUT_FORMAT
+        #   value: table
+        # - name: FAIL_ON_SCORE
+        #   value: 824
+        - name: ANALYZE_CONTAINER
+          value: "viglesiasce/minio-client"
+        image: komattaka/clair-client:0.1.2
+        imagePullPolicy: IfNotPresent
+        name: clair-analyze-container
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

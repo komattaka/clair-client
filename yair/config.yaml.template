@@ -1,0 +1,19 @@
+---
+registry:
+  host: "${REGISTRY_HOST}"
+
+clair:
+  host: "${CLAIR_HOST}"
+
+output:
+  format: ${OUTPUT_FORMAT} # "json", "table", "short-table" or quiet
+# uncomment if you want to use the rocketchat output feature
+#  rocketchat:
+#    webhook_url: rocket-chat.com/hooks/...
+#    receiver: "#general,@admin"
+
+fail_on:
+  # a number will be added to the score depending on the severity
+  # unknown: 0, negligible: 1, low: 16, medium: 81, high: 265, critical: 625, defcon1: 1296
+  score: ${FAIL_ON_SCORE}
+  big_vulnerability: true
