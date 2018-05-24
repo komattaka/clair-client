@@ -11,7 +11,7 @@ LABEL org.label-schema.url="https://github.com/komattaka/" \
       org.label-schema.vcs-type="Git" \
       org.label-schema.vcs-url="https://github.com/komattaka/clair-client" \
       org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.docker.dockerfile="/Dockerfile"
+      org.label-schema.docker.dockerfile="./yair/Dockerfile"
 
 ENV REGISTRY_HOST="registry.hub.docker.com"
 ENV CLAIR_HOST="clair:6060"
